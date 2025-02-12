@@ -49,7 +49,7 @@ SPDX-License-Identifier: AGPL-3.0-only
 				<MkAvatar v-if="item.avatar" :user="item.avatar" :class="$style.avatar"/>
 				<div :class="$style.item_content">
 					<span :class="$style.item_content_text">{{ item.text }}</span>
-					<span v-if="item.indicate" :class="$style.indicator"><i class="_indicatorCircle"></i></span>
+					<span v-if="item.indicate" :class="$style.indicator" class="_blink"><i class="_indicatorCircle"></i></span>
 				</div>
 			</MkA>
 			<a
@@ -68,7 +68,7 @@ SPDX-License-Identifier: AGPL-3.0-only
 				<i v-if="item.icon" class="ti-fw" :class="[$style.icon, item.icon]"></i>
 				<div :class="$style.item_content">
 					<span :class="$style.item_content_text">{{ item.text }}</span>
-					<span v-if="item.indicate" :class="$style.indicator"><i class="_indicatorCircle"></i></span>
+					<span v-if="item.indicate" :class="$style.indicator" class="_blink"><i class="_indicatorCircle"></i></span>
 				</div>
 			</a>
 			<button
@@ -82,7 +82,7 @@ SPDX-License-Identifier: AGPL-3.0-only
 			>
 				<MkAvatar :user="item.user" :class="$style.avatar"/><MkUserName :user="item.user"/>
 				<div v-if="item.indicate" :class="$style.item_content">
-					<span :class="$style.indicator"><i class="_indicatorCircle"></i></span>
+					<span :class="$style.indicator" class="_blink"><i class="_indicatorCircle"></i></span>
 				</div>
 			</button>
 			<button
@@ -161,7 +161,7 @@ SPDX-License-Identifier: AGPL-3.0-only
 				<MkAvatar v-if="item.avatar" :user="item.avatar" :class="$style.avatar"/>
 				<div :class="$style.item_content">
 					<span :class="$style.item_content_text">{{ item.text }}</span>
-					<span v-if="item.indicate" :class="$style.indicator"><i class="_indicatorCircle"></i></span>
+					<span v-if="item.indicate" :class="$style.indicator" class="_blink"><i class="_indicatorCircle"></i></span>
 				</div>
 			</button>
 		</template>
@@ -178,11 +178,11 @@ SPDX-License-Identifier: AGPL-3.0-only
 <script lang="ts">
 import { computed, defineAsyncComponent, inject, nextTick, onBeforeUnmount, onMounted, ref, shallowRef, unref, watch } from 'vue';
 import MkSwitchButton from '@/components/MkSwitch.button.vue';
-import { MenuItem, InnerMenuItem, MenuPending, MenuAction, MenuSwitch, MenuRadio, MenuRadioOption, MenuParent } from '@/types/menu.js';
+import type { MenuItem, InnerMenuItem, MenuPending, MenuAction, MenuSwitch, MenuRadio, MenuRadioOption, MenuParent } from '@/types/menu.js';
 import * as os from '@/os.js';
 import { i18n } from '@/i18n.js';
 import { isTouchUsing } from '@/scripts/touch.js';
-import { type Keymap } from '@/scripts/hotkey.js';
+import type { Keymap } from '@/scripts/hotkey.js';
 import { isFocusable } from '@/scripts/focus.js';
 import { getNodeOrNull } from '@/scripts/get-dom-node-or-null.js';
 
@@ -639,7 +639,6 @@ onBeforeUnmount(() => {
 	align-items: center;
 	color: var(--MI_THEME-indicator);
 	font-size: 12px;
-	animation: global-blink 1s infinite;
 }
 
 .divider {

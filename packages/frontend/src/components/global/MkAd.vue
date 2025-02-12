@@ -4,7 +4,7 @@ SPDX-License-Identifier: AGPL-3.0-only
 -->
 
 <template>
-<div v-if="chosen && !shouldHide" :class="$style.root">
+<div v-if="chosen && !shouldHide">
 	<div
 		v-if="!showMenu"
 		:class="[$style.main, {
@@ -120,10 +120,6 @@ function reduceFrequency(): void {
 </script>
 
 <style lang="scss" module>
-.root {
-
-}
-
 .main {
 	text-align: center;
 
@@ -136,8 +132,6 @@ function reduceFrequency(): void {
 	}
 
 	&.form_horizontal {
-		padding: 8px;
-
 		> .link,
 		> .link > .img {
 			max-width: min(600px, 100%);
@@ -146,8 +140,6 @@ function reduceFrequency(): void {
 	}
 
 	&.form_horizontalBig {
-		padding: 8px;
-
 		> .link,
 		> .link > .img {
 			max-width: min(600px, 100%);

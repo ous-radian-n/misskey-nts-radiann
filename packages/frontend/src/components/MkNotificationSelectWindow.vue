@@ -30,7 +30,8 @@ SPDX-License-Identifier: AGPL-3.0-only
 </template>
 
 <script lang="ts" setup>
-import { ref, Ref, shallowRef } from 'vue';
+import { ref, shallowRef } from 'vue';
+import type { Ref } from 'vue';
 import MkSwitch from './MkSwitch.vue';
 import MkInfo from './MkInfo.vue';
 import MkButton from './MkButton.vue';
@@ -53,7 +54,7 @@ const props = withDefaults(defineProps<{
 
 const dialog = shallowRef<InstanceType<typeof MkModalWindow>>();
 
-const typesMap: TypesMap = notificationTypes.reduce((p, t) => ({ ...p, [t]: ref<boolean>(!props.excludeTypes.includes(t)) }), {} as any);
+const typesMap = notificationTypes.reduce((p, t) => ({ ...p, [t]: ref<boolean>(!props.excludeTypes.includes(t)) }), {} as TypesMap);
 
 function ok() {
 	emit('done', {
